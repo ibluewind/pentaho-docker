@@ -44,7 +44,7 @@ COPY mssql-jdbc-9.2.1.jre8.jar ${KETTLE_HOME}/lib
 RUN chown pentaho:pentaho ${KETTLE_HOME}/lib/mysql-connector-java-8.0.23.jar ${KETTLE_HOME}/lib/mssql-jdbc-9.2.1.jre8.jar
 
 #VOLUME ["/opt/pentaho/repository"]
-EXPOSE 9000
+EXPOSE 11000
 
 WORKDIR $KETTLE_HOME
 USER pentaho

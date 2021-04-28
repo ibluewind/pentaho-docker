@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  pentaho-mysql:
+    image: mysql:5.7
+    container_name: pentaho-mysql
+    hostname: pentaho-mysql
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=1Qaz@Wsx
+    ports:
+      - 3306:3306
+    networks:
+      - xr-analysis
+networks:
+  xr-analysis:

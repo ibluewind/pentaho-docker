@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repositories>
+  <repository>
+    <id>XR Pentaho Server eRepository</id>
+    <name>Pentaho Docker server</name>
+    <description>Pentaho repository | http://PENTAHO_SERVER:8080/pentaho</description>
+    <is_default>true</is_default>
+    <repository_location_url>http://PENTAHO_SERVER:8080/pentaho</repository_location_url>
+    <version_comment_mandatory>N</version_comment_mandatory>
+  </repository>
+</repositories>

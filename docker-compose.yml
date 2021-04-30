@@ -36,37 +36,39 @@ services:
         container_name: pentaho-mysql
         hostname: pentaho-mysql
         volumes:
-        - /data/xr-storage/pentaho-mysql:/var/lib/mysql
+            - ${PENTAHO_MYSQL_VOLUME}:/var/lib/mysql
         environment:
-        - MYSQL_ROOT_PASSWORD=1Qaz@Wsx
+            - MYSQL_ROOT_PASSWORD=1Qaz@Wsx
         ports:
-        - 3306:3306
+            - 3306:3306
         networks:
-        - xr-analysis
+            - xr-analysis
     xr-mysql:
         image: mysql:5.7
         container_name: xr-mysql
         hostname: xr-mysql
         volumes:
-        - /data/xr-storage/xr-mysql:/var/lib/mysql
+            - ${XR_MYSQL_VOLUME}:/var/lib/mysql
         environment:
-        - MYSQL_ROOT_PASSWORD=1Qaz@Wsx
+            - MYSQL_ROOT_PASSWORD=1Qaz@Wsx
         ports:
-        - 4306:3306
+            - 4306:3306
         networks:
-        - xr-analysis
+            - xr-analysis
+        depends_on: 
+            - pentaho-mysql
     xr-storage:
         image: store/minio/minio:RELEASE.2020-12-29T23-29-29Z
         container_name: xr-storage
         hostname: xr-storage
         environment:
-            - MINIO_USER=xr_user
-            - MINIO_SECRET_KEY=xr_user_secret_key
+            - MINIO_ROOT_USER=xr_user
+            - MINIO_ROOT_PASSWORD=xr_user_secret_key
         ports:
             - 9000:9000
         command: ["server", "/data"]
         volumes:
-            - /data/xr-storage/minio:/data
+            - ${XR_STORAGE_VOLUME}:/data
         networks:
             - xr-analysis
 networks: 

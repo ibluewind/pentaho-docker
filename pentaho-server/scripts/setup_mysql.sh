@@ -37,3 +37,9 @@ if [ "$CHK_HIBERNATE" -eq "0" ]; then
 else
     echo "repository already exists..."
 fi
+
+if [ ! -f ".mysql_config" ]; then
+    HOSTNAME=`hostname -f`
+    sed -i "s/node1/${HOSTNAME}/g" ${PENTHAO_SERVER_HOME}/pentaho-server/pentaho-solutions/system/jackrabbit/repository.xml
+    touch .mysql_config
+fi

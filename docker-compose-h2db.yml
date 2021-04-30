@@ -2,18 +2,17 @@ version: '3.4'
 
 services:
     pentaho-server:
-        image: ibluewind/pentaho-server:mysql
+        image: ibluewind/pentaho-server:h2db
         container_name: pentaho-server
         hostname: pentaho-server
-        volumes: 
-            - .\data\
+        volumes:
+            - hsqldb-data:/opt/pentaho/server/pentaho-server/data/hsqldb
+            - jackrabbit-data:/opt/pentaho/server/pentaho-server/pentaho-solutions/system/jackrabbit/repository
         ports: 
             - 8080:8080
             - 9051:9051
         networks: 
             - xr-analysis
-        depends_on: 
-            - pentaho-mysql
     carte-master:
         image: ibluewind/pentaho-carte:0.1
         container_name: carte-master
@@ -29,18 +28,6 @@ services:
             - xr-analysis
         depends_on: 
             - pentaho-server
-    pentaho-mysql:
-        image: mysql:5.7
-        container_name: pentaho-mysql
-        hostname: pentaho-mysql
-        volumes:
-            - ${PENTAHO_MYSQL_VOLUME}:/var/lib/mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD=1Qaz@Wsx
-        ports:
-            - 3306:3306
-        networks:
-            - xr-analysis
     xr-mysql:
         image: mysql:5.7
         container_name: xr-mysql
@@ -53,8 +40,6 @@ services:
             - 4306:3306
         networks:
             - xr-analysis
-        depends_on: 
-            - pentaho-mysql
     xr-storage:
         image: store/minio/minio:RELEASE.2020-12-29T23-29-29Z
         container_name: xr-storage
@@ -71,3 +56,6 @@ services:
             - xr-analysis
 networks: 
     xr-analysis:
+volumes: 
+    hsqldb-data:
+    jackrabbit-data:

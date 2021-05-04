@@ -5,8 +5,11 @@ services:
         image: ibluewind/pentaho-server:mysql
         container_name: pentaho-server
         hostname: pentaho-server
-        volumes: 
-            - .\data\
+        environment: 
+            - MYSQL_HOST=pentaho-mysql
+            - MYSQL_USER=root
+            - MYSQL_PASSWD=1Qaz@Wsx
+            - MYSQL_PORT=3306
         ports: 
             - 8080:8080
             - 9051:9051
@@ -15,7 +18,7 @@ services:
         depends_on: 
             - pentaho-mysql
     carte-master:
-        image: ibluewind/pentaho-carte:0.1
+        image: ibluewind/pentaho-carte:1.0
         container_name: carte-master
         hostname: carte-master
         environment:
@@ -30,7 +33,7 @@ services:
         depends_on: 
             - pentaho-server
     pentaho-mysql:
-        image: mysql:5.7
+        image: mysql:5.7.34
         container_name: pentaho-mysql
         hostname: pentaho-mysql
         volumes:
@@ -38,11 +41,11 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=1Qaz@Wsx
         ports:
-            - 3306:3306
+            - 4306:3306
         networks:
             - xr-analysis
     xr-mysql:
-        image: mysql:5.7
+        image: mysql:5.7.34
         container_name: xr-mysql
         hostname: xr-mysql
         volumes:
@@ -50,7 +53,7 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=1Qaz@Wsx
         ports:
-            - 4306:3306
+            - 3306:3306
         networks:
             - xr-analysis
         depends_on: 

@@ -39,9 +39,9 @@ RUN chown -R pentaho:pentaho ${KETTLE_HOME}/scripts
 RUN chmod +x ${KETTLE_HOME}/scripts/run.sh
 
 # Copy Database JDBC Driver
-COPY mysql-connector-java-8.0.23.jar ${KETTLE_HOME}/lib
+COPY mysql-connector-java-5.1.48.jar ${KETTLE_HOME}/lib
 COPY mssql-jdbc-9.2.1.jre8.jar ${KETTLE_HOME}/lib
-RUN chown pentaho:pentaho ${KETTLE_HOME}/lib/mysql-connector-java-8.0.23.jar ${KETTLE_HOME}/lib/mssql-jdbc-9.2.1.jre8.jar
+RUN chown pentaho:pentaho ${KETTLE_HOME}/lib/mysql-connector-java-5.1.48.jar ${KETTLE_HOME}/lib/mssql-jdbc-9.2.1.jre8.jar
 
 #VOLUME ["/opt/pentaho/repository"]
 EXPOSE 11000

@@ -20,7 +20,7 @@
 		driverClassName="org.hsqldb.jdbcDriver" url="jdbc:hsqldb:hsql://localhost/jackrabbit"
 		validationQuery="select 1"/>
 	-->
-	<Resource validationQuery="select 1" url="jdbc:mysql://MYSQL_HOST:MYSQL_PORT/hibernate" 
+	<Resource validationQuery="select 1" url="jdbc:mysql://MYSQL_HOST:MYSQL_PORT/hibernate?useSSL=false" 
 		driverClassName="com.mysql.jdbc.Driver"
 		password="1Qaz@Wsx"
 		username="hibuser"
@@ -44,7 +44,7 @@
 		auth="Container"
 		name="jdbc/Audit"/-->
 	<Resource validationQuery="select 1"
-		url="jdbc:mysql://MYSQL_HOST:MYSQL_PORT/quartz"
+		url="jdbc:mysql://MYSQL_HOST:MYSQL_PORT/quartz?useSSL=false"
 		driverClassName="com.mysql.jdbc.Driver"
 		password="1Qaz@Wsx"
 		username="pentaho_user"
@@ -111,6 +111,6 @@
 		username="jcr_user"
 		password="1Qaz@Wsx" 
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://MYSQL_HOST:MYSQL_PORT/jackrabbit"
+		url="jdbc:mysql://MYSQL_HOST:MYSQL_PORT/jackrabbit?useSSL=false"
 		validationQuery="select 1"/>
 </Context>

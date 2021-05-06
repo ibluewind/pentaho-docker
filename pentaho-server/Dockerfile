@@ -57,6 +57,7 @@ COPY config/slave-server-config.xml ${PENTAHO_SERVER_HOME}/pentaho-solutions/sys
 
 # set up MySQL connection infomation
 RUN rm -f ${CATALINA_HOME}/lib/mysql-connector-java-5.1.17.jar
+#COPY ./mysql-connector-java-8.0.23.jar ${CATALINA_HOME}/lib
 COPY ./mysql-connector-java-5.1.48.jar ${CATALINA_HOME}/lib
 #RUN sed -i -e 's/jdbc:mysql:\/\/localhost/jdbc:mysql:\/\/${MYSQL_HOST}/' ${CATALINA_HOME}/webapps/pentaho/META-INF/context.xml
 

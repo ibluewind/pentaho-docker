@@ -17,21 +17,21 @@ services:
             - xr-analysis
         depends_on: 
             - pentaho-mysql
-    carte-master:
-        image: ibluewind/pentaho-carte:1.0
-        container_name: carte-master
-        hostname: carte-master
-        environment:
-            - PENTAHO_SERVER=pentaho-server
-            - CARTE_MASTER=Y
-            - CARTE_MASTER_HOSTNAME=carte-master
-            - CARTE_MASTER_PORT=11000
-        ports: 
-            - 11000:11000
-        networks:
-            - xr-analysis
-        depends_on: 
-            - pentaho-server
+    # carte-master:
+    #     image: ibluewind/pentaho-carte:1.0
+    #     container_name: carte-master
+    #     hostname: carte-master
+    #     environment:
+    #         - PENTAHO_SERVER=pentaho-server
+    #         - CARTE_MASTER=Y
+    #         - CARTE_MASTER_HOSTNAME=carte-master
+    #         - CARTE_MASTER_PORT=11000
+    #     ports: 
+    #         - 11000:11000
+    #     networks:
+    #         - xr-analysis
+    #     depends_on: 
+    #         - pentaho-server
     pentaho-mysql:
         image: mysql:5.7.34
         container_name: pentaho-mysql
@@ -71,6 +71,19 @@ services:
         volumes:
             - ${XR_STORAGE_VOLUME}:/data
         networks:
+            - xr-analysis
+    mssql_svr:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        container_name: mssql_svr
+        hostname: mssql_svr
+        volumes:
+            - ${XR_MSSQL_VOLUME}:/var/opt/mssql/data
+        environment: 
+            - ACCEPT_EULA=Y
+            - MSSQL_SA_PASSWORD=1Qaz@Wsx
+        ports: 
+            - 1433:1433
+        networks: 
             - xr-analysis
 networks: 
     xr-analysis:

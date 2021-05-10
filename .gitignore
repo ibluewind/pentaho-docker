@@ -1,10 +1,6 @@
 .vscode
 *.log
 mysql
-pentaho-carte/*.jar
 pentaho-carte/*.zip
-pentaho-server/*.jar
 pentaho-server/*.zip
-pentaho-server-centos/*.jar
-pentaho-server-centos/*.zip
 data
